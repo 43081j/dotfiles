@@ -1,0 +1,4 @@
+[submodule "bin/antigen"]
+	path = bin/antigen
+	url = https://github.com/zsh-users/antigen.git
+	branch = master
