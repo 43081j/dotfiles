@@ -2,3 +2,7 @@
 	path = zsh/.zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
 	branch = master
+[submodule "vim/.vim/bundle/Vundle.vim"]
+	path = vim/.vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+	branch = master
