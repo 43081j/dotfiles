@@ -22,6 +22,9 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 
@@ -40,7 +43,17 @@ set scrolloff=5
 set cc=80
 set nobackup
 
+if executable('rg')
+	let g:ackprg = 'rg --vimgrep'
+elseif executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
+
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 au BufRead,BufNewFile *.md set filetype=markdown
+
+if executable('prettier')
+	autocmd FileType javascript set formatprg=prettier\ --stdin
+endif
