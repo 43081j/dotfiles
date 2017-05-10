@@ -1,3 +1,10 @@
 [user]
-	name = 43081j
 	email = 43081j@localhost
+	name = 43081j
+[push]
+	default = simple
+[alias]
+	stat = status --short --branch
+	graph = log --graph --date=relative --decorate --abbrev-commit --topo-order --pretty --oneline
+[pull]
+	rebase = true
