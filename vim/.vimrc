@@ -49,6 +49,8 @@ set nobackup
 
 if has("mac")
 	colorscheme Monokai
+elseif has("windows")
+	colorscheme desert
 else
 	colorscheme solarized
 endif
@@ -59,7 +61,6 @@ elseif executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:fzf_command_prefix = 'Fzf'
 let g:OmniSharp_selector_ui = 'fzf'
