@@ -27,7 +27,9 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'omnisharp/omnisharp-vim'
+if has("python")
+	Plugin 'omnisharp/omnisharp-vim'
+endif
 
 call vundle#end()
 
@@ -47,9 +49,9 @@ set cc=80
 set omnifunc=syntaxcomplete#Complete
 set nobackup
 
-if has("mac")
+if has('mac')
 	colorscheme Monokai
-elseif has("windows")
+elseif has('windows')
 	colorscheme desert
 else
 	colorscheme solarized
@@ -78,12 +80,14 @@ nnoremap <silent> <leader>gf :FzfBCommits<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
 
-augroup omnisharp_commands
-	autocmd!
-	autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-	autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-	autocmd FileType cs nnoremap <buffer><silent> <c-]> :OmniSharpGotoDefinition<CR>
-augroup END
+if exists('g:OmniSharp_loaded')
+	augroup omnisharp_commands
+		autocmd!
+		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+		autocmd FileType cs nnoremap <buffer><silent> <c-]> :OmniSharpGotoDefinition<CR>
+	augroup END
+endif
 
 if executable('prettier')
 	autocmd FileType javascript set formatprg=prettier\ --stdin
