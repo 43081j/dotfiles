@@ -51,7 +51,7 @@ set nobackup
 
 if has('mac')
 	colorscheme Monokai
-elseif has('windows')
+elseif has('win32')
 	colorscheme desert
 else
 	colorscheme solarized
