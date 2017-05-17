@@ -54,7 +54,7 @@ if has('mac')
 elseif has('win32')
 	colorscheme desert
 else
-	colorscheme solarized
+	colorscheme default
 endif
 
 if executable('rg')
