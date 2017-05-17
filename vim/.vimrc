@@ -27,6 +27,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'omnisharp/omnisharp-vim'
 
 call vundle#end()
 
@@ -61,6 +62,7 @@ endif
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:fzf_command_prefix = 'Fzf'
+let g:OmniSharp_selector_ui = 'fzf'
 
 " Bindings
 
@@ -74,6 +76,13 @@ nnoremap <silent> <leader>gf :FzfBCommits<CR>
 
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
+
+augroup omnisharp_commands
+	autocmd!
+	autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+	autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+	autocmd FileType cs nnoremap <buffer><silent> <c-]> :OmniSharpGotoDefinition<CR>
+augroup END
 
 if executable('prettier')
 	autocmd FileType javascript set formatprg=prettier\ --stdin
