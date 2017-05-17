@@ -20,11 +20,13 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-unimpaired'
 
 call vundle#end()
 
@@ -58,6 +60,17 @@ endif
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:fzf_command_prefix = 'Fzf'
+
+" Bindings
+
+nnoremap <c-p> :FzfGFiles<CR>
+nnoremap <silent> <leader>a :FzfBuffers<CR>
+nnoremap <silent> <leader>/ :execute 'FzfAg ' . input('Ag/')<CR>
+nnoremap <silent> <leader>gl :FzfCommits<CR>
+nnoremap <silent> <leader>gf :FzfBCommits<CR>
+
+" Filetypes
 
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
