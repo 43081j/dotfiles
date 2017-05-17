@@ -6,8 +6,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'gregsexton/gitv'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
+Plugin 'justinmk/vim-dirvish'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -41,7 +41,14 @@ set cursorline
 set hlsearch
 set scrolloff=5
 set cc=80
+set omnifunc=syntaxcomplete#Complete
 set nobackup
+
+if has("mac")
+	colorscheme Monokai
+else
+	colorscheme solarized
+endif
 
 if executable('rg')
 	let g:ackprg = 'rg --vimgrep'
@@ -53,6 +60,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standar
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 au BufRead,BufNewFile *.md set filetype=markdown
+autocmd FileType dirvish call fugitive#detect(@%)
 
 if executable('prettier')
 	autocmd FileType javascript set formatprg=prettier\ --stdin
