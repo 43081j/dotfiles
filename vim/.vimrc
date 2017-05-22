@@ -25,7 +25,6 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-dispatch'
-Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-unimpaired'
 if has("python")
 	Plugin 'omnisharp/omnisharp-vim'
@@ -55,12 +54,6 @@ elseif has('win32')
 	colorscheme desert
 else
 	colorscheme default
-endif
-
-if executable('rg')
-	let g:ackprg = 'rg --vimgrep'
-elseif executable('ag')
-	let g:ackprg = 'ag --vimgrep'
 endif
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
