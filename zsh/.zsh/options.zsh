@@ -8,3 +8,5 @@ if type "rg" > /dev/null; then
 else
 	FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD || ag -g "")'
 fi
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
