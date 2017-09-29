@@ -73,12 +73,13 @@ nnoremap <silent> <leader>gf :FzfBCommits<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
 
-if exists('g:OmniSharp_loaded')
+if has('python')
 	augroup omnisharp_commands
 		autocmd!
 		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-		autocmd FileType cs nnoremap <buffer><silent> <c-]> :OmniSharpGotoDefinition<CR>
+		autocmd FileType cs nnoremap <C-]> :OmniSharpGotoDefinition<cr>
+		autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
 	augroup END
 endif
 
