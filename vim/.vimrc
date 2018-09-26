@@ -26,9 +26,8 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-unimpaired'
-if has("python")
-	Plugin 'omnisharp/omnisharp-vim'
-endif
+Plugin 'omnisharp/omnisharp-vim'
+Plugin 'dracula/vim'
 
 call vundle#end()
 
@@ -48,6 +47,14 @@ set scrolloff=5
 set cc=80
 set omnifunc=syntaxcomplete#Complete
 set nobackup
+set termguicolors
+set t_Co=256
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:fzf_command_prefix = 'Fzf'
+let g:OmniSharp_selector_ui = 'fzf'
 
 if has('mac')
 	colorscheme Monokai
@@ -56,10 +63,6 @@ elseif has('win32')
 else
 	colorscheme default
 endif
-
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-let g:fzf_command_prefix = 'Fzf'
-let g:OmniSharp_selector_ui = 'fzf'
 
 " Bindings
 
@@ -74,13 +77,13 @@ nnoremap <silent> <leader>gf :FzfBCommits<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
 
-if has('python')
+if has('python3')
 	augroup omnisharp_commands
 		autocmd!
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-		autocmd FileType cs nnoremap <C-]> :OmniSharpGotoDefinition<cr>
-		autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+		autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<cr>
+		autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<cr>
 	augroup END
 endif
 
