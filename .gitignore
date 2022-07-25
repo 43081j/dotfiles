@@ -1,6 +1,5 @@
 zsh/.zsh/.antigen
 *.swp
-vim/.vim/bundle/*
-!vim/.vim/bundle/Vundle.vim/
+vim/.vim/plugged
 tmux/.tmux/plugins/*
 !tmux/.tmux/plugins/tpm

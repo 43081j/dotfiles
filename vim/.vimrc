@@ -1,39 +1,36 @@
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'gregsexton/gitv'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'justinmk/vim-dirvish'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'pangloss/vim-javascript'
-Plugin 'groenewege/vim-less'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'omnisharp/omnisharp-vim'
-Plugin 'dracula/vim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'gregsexton/gitv'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'justinmk/vim-dirvish'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'groenewege/vim-less'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-unimpaired'
+Plug 'omnisharp/omnisharp-vim'
+Plug 'dracula/vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax on
 
+set nocompatible
 set visualbell
 set laststatus=2
 set tabstop=2
@@ -49,7 +46,6 @@ set omnifunc=syntaxcomplete#Complete
 set nobackup
 set termguicolors
 set t_Co=256
-set wildmenu
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -73,6 +69,23 @@ nnoremap <silent> <leader>/ :execute 'FzfAg ' . input('Ag/')<CR>
 nnoremap <silent> <leader>gl :FzfCommits<CR>
 nnoremap <silent> <leader>gf :FzfBCommits<CR>
 
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+nmap <silent> <c-]> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <C-^> <Plug>(coc-references)
+
+nnoremap <C-n> :Vexplore<CR>
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+
 " Filetypes
 
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -81,10 +94,9 @@ autocmd FileType dirvish call fugitive#detect(@%)
 if has('python3')
 	augroup omnisharp_commands
 		autocmd!
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-		autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<cr>
-		autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<cr>
+		autocmd FileType cs nmap <silent> <buffer> <C-]> <Plug>(omnisharp_go_to_definition)
+		autocmd FileType cs nmap <silent> <buffer> <C-^> <Plug>(omnisharp_find_usages)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
 	augroup END
 endif
 
