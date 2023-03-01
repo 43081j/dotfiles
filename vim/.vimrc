@@ -54,11 +54,11 @@ let g:fzf_command_prefix = 'Fzf'
 let g:OmniSharp_selector_ui = 'fzf'
 
 if has('mac')
-	colorscheme dracula
+  colorscheme dracula
 elseif has('win32')
-	colorscheme desert
+  colorscheme desert
 else
-	colorscheme default
+  colorscheme default
 endif
 
 " Bindings
@@ -80,6 +80,11 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> <C-^> <Plug>(coc-references)
 
+inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <silent><expr> <c-j> coc#pum#visible() ? coc#pum#next(1) : ''
+inoremap <silent><expr> <c-k> coc#pum#visible() ? coc#pum#prev(1) : ''
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 nnoremap <C-n> :Vexplore<CR>
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -92,14 +97,14 @@ au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType dirvish call fugitive#detect(@%)
 
 if has('python3')
-	augroup omnisharp_commands
-		autocmd!
-		autocmd FileType cs nmap <silent> <buffer> <C-]> <Plug>(omnisharp_go_to_definition)
-		autocmd FileType cs nmap <silent> <buffer> <C-^> <Plug>(omnisharp_find_usages)
+  augroup omnisharp_commands
+    autocmd!
+    autocmd FileType cs nmap <silent> <buffer> <C-]> <Plug>(omnisharp_go_to_definition)
+    autocmd FileType cs nmap <silent> <buffer> <C-^> <Plug>(omnisharp_find_usages)
     autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
-	augroup END
+  augroup END
 endif
 
 if executable('prettier')
-	autocmd FileType javascript set formatprg=prettier\ --stdin
+  autocmd FileType javascript set formatprg=prettier\ --stdin
 endif
