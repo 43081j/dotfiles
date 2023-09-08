@@ -1,5 +1,5 @@
 typeset -U path
-path=(~/bin $path[@])
+path=(~/bin /opt/homebrew/bin $path[@])
 if [ -d ~/Android/Sdk ]; then
 	path+=(~/Android/Sdk/emulator ~/Android/Sdk/tools ~/Android/Sdk/platform-tools)
 fi
