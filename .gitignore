@@ -1,5 +1,6 @@
 zsh/.zsh/.antigen
 *.swp
 vim/.vim/plugged
+vim/.vim/swap
 tmux/.tmux/plugins/*
 !tmux/.tmux/plugins/tpm
