@@ -96,7 +96,6 @@ let g:netrw_browse_split = 4
 " Filetypes
 
 au BufRead,BufNewFile *.md set filetype=markdown
-autocmd FileType dirvish call fugitive#detect(@%)
 
 if has('python3')
   augroup omnisharp_commands
