@@ -53,6 +53,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:fzf_command_prefix = 'Fzf'
 let g:OmniSharp_selector_ui = 'fzf'
+let $BAT_THEME = 'Dracula'
 
 if has('mac')
   colorscheme dracula
@@ -66,7 +67,7 @@ endif
 
 nnoremap <c-p> :FzfGFiles<CR>
 nnoremap <silent> <leader>a :FzfBuffers<CR>
-nnoremap <silent> <leader>/ :execute 'FzfAg ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :execute 'FzfRg ' . input('Rg/')<CR>
 nnoremap <silent> <leader>gl :FzfCommits<CR>
 nnoremap <silent> <leader>gf :FzfBCommits<CR>
 
