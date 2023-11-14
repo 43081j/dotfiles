@@ -1,12 +1,12 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'VundleVim/Vundle.vim'
-Plug 'gregsexton/gitv'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'justinmk/vim-dirvish'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
@@ -53,6 +53,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:fzf_command_prefix = 'Fzf'
 let g:OmniSharp_selector_ui = 'fzf'
+let g:OmniSharp_server_use_net6 = 1
 let $BAT_THEME = 'Dracula'
 
 if has('mac')
@@ -100,8 +101,10 @@ au BufRead,BufNewFile *.md set filetype=markdown
 if has('python3')
   augroup omnisharp_commands
     autocmd!
-    autocmd FileType cs nmap <silent> <buffer> <C-]> <Plug>(omnisharp_go_to_definition)
-    autocmd FileType cs nmap <silent> <buffer> <C-^> <Plug>(omnisharp_find_usages)
+
+    autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+    autocmd FileType cs nmap <silent> <buffer> <c-]> <Plug>(omnisharp_go_to_definition)
+    autocmd FileType cs nmap <silent> <buffer> <c-^> <Plug>(omnisharp_find_usages)
     autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
   augroup END
 endif
