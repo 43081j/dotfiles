@@ -61,7 +61,7 @@ if has('mac')
 elseif has('win32')
   colorscheme desert
 else
-  colorscheme default
+  colorscheme dracula
 endif
 
 " Bindings

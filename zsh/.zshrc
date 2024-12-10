@@ -6,6 +6,15 @@ fi
 if [ -d ~/Android/Sdk ]; then
 	path+=(~/Android/Sdk/emulator ~/Android/Sdk/tools ~/Android/Sdk/platform-tools)
 fi
+if [ -d ~/.fzf/bin ]; then
+  path+=(~/.fzf/bin)
+fi
+if [ -d ~/.local/bin ]; then
+  path+=(~/.local/bin)
+fi
+if [ -d ~/.bun ]; then
+  path+=(~/.bun/bin)
+fi
 
 source ~/.zsh/antigen/antigen.zsh
 antigen init ~/.zsh/antigenrc.zsh
