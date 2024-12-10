@@ -33,3 +33,7 @@ if (( $+commands[starship] )); then
 fi
 
 bindkey -v
+
+if [ -f ~/bin/z.sh ]; then
+  . ~/bin/z.sh
+fi
