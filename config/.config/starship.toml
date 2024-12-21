@@ -16,3 +16,6 @@ symbol = "🧊 "
 
 [typst]
 symbol = "t "
+
+[container]
+disabled = true
