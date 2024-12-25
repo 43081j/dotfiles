@@ -22,6 +22,11 @@ fi
 source ~/.zsh/antigen/antigen.zsh
 antigen init ~/.zsh/antigenrc.zsh
 
+if [ -d ~/.fzf ]; then
+  source ~/.fzf/shell/completion.zsh
+  source ~/.fzf/shell/key-bindings.zsh
+fi
+
 source ~/.zsh/history.zsh
 source ~/.zsh/options.zsh
 source ~/.zsh/keys.zsh
