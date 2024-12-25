@@ -15,6 +15,9 @@ fi
 if [ -d ~/.bun ]; then
   path+=(~/.bun/bin)
 fi
+if [ -d ~/.cargo ]; then
+	. ~/.cargo/env
+fi
 
 source ~/.zsh/antigen/antigen.zsh
 antigen init ~/.zsh/antigenrc.zsh
@@ -23,14 +26,11 @@ source ~/.zsh/history.zsh
 source ~/.zsh/options.zsh
 source ~/.zsh/keys.zsh
 source ~/.zsh/functions.zsh
+source ~/.zsh/aliases.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-if [ -d ~/.cargo ]; then
-	. ~/.cargo/env
-fi
 
 if (( $+commands[starship] )); then
 	eval "$(starship init zsh)"
