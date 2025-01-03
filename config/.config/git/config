@@ -4,6 +4,7 @@
 [push]
   default = simple
 [alias]
+  co = checkout
   stat = status --short --branch
   graph = log --graph --date=relative --decorate --abbrev-commit --topo-order --pretty --oneline
   diffs = diff --staged
