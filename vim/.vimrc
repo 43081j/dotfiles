@@ -16,7 +16,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-dispatch'
@@ -26,6 +25,8 @@ Plug 'dracula/vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+set rtp+=~/.fzf
 
 filetype plugin indent on
 syntax on
