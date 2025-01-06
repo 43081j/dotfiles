@@ -73,6 +73,10 @@ nnoremap <silent> <leader>/ :execute 'FzfRg ' . input('Rg/')<CR>
 nnoremap <silent> <leader>gl :FzfCommits<CR>
 nnoremap <silent> <leader>gf :FzfBCommits<CR>
 
+" Crazy ast-grep bindings in vim
+command! -bang -nargs=* FzfSg call fzf#vim#grep("sg run --heading=never --color=always --pattern=".fzf#shellescape(<q-args>)." | awk -F ':' '!seen[$1]++'", fzf#vim#with_preview(), <bang>0)
+nnoremap <silent> <leader>sg :execute 'FzfSg ' . input('sg/')<CR>
+
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
