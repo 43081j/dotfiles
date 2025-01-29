@@ -23,6 +23,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'omnisharp/omnisharp-vim'
 Plug 'dracula/vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
 
 call plug#end()
 
