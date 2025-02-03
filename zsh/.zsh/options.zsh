@@ -4,10 +4,6 @@ unsetopt beep
 PURE_GIT_PULL=0
 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-if type "rg" > /dev/null; then
-	FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD || rg -g "")'
-else
-	FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD || ag -g "")'
-fi
-
+export BAT_THEME='Dracula'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

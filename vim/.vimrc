@@ -68,11 +68,13 @@ endif
 
 " Bindings
 
-nnoremap <c-p> :FzfGFiles<CR>
+nnoremap <c-p> :FzfFiles<CR>
 nnoremap <silent> <leader>a :FzfBuffers<CR>
 nnoremap <silent> <leader>/ :execute 'FzfRg ' . input('Rg/')<CR>
 nnoremap <silent> <leader>gl :FzfCommits<CR>
 nnoremap <silent> <leader>gf :FzfBCommits<CR>
+nnoremap <silent> <leader>gf :FzfGFiles<CR>
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 
 " Crazy ast-grep bindings in vim
 command! -bang -nargs=* FzfSg call fzf#vim#grep("sg run --heading=never --color=always --pattern=".fzf#shellescape(<q-args>)." | awk -F ':' '!seen[$1]++'", fzf#vim#with_preview(), <bang>0)
@@ -83,11 +85,15 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" Coc bindings
 nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> <C-^> <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>ac <Plug>(coc-codeaction-cursor)
+nmap <leader>as <Plug>(coc-codeaction-source)
 
 inoremap <silent><expr> <c-@> coc#refresh()
 inoremap <silent><expr> <c-j> coc#pum#visible() ? coc#pum#next(1) : ''
@@ -116,5 +122,5 @@ if has('python3')
 endif
 
 if executable('prettier')
-  autocmd FileType javascript set formatprg=prettier\ --stdin
+  autocmd FileType javascript,typescript set formatprg=prettier\ --stdin
 endif
