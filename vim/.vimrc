@@ -100,7 +100,8 @@ inoremap <silent><expr> <c-j> coc#pum#visible() ? coc#pum#next(1) : ''
 inoremap <silent><expr> <c-k> coc#pum#visible() ? coc#pum#prev(1) : ''
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-nnoremap <C-n> :Vexplore<CR>
+command VLeftDirvish leftabove vsplit | vertical resize 50 | silent Dirvish
+nnoremap <C-n> :VLeftDirvish<CR>
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
