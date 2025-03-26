@@ -4,5 +4,6 @@
   "tsserver.useLocalTsdk": true,
   "stylelintplus.cssInJs": true,
   "eslint.useESLintClass": true,
-  "eslint.experimental.useFlatConfig": true
+  "eslint.experimental.useFlatConfig": true,
+  "inlayHint.enable": false
 }

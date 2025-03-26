@@ -14,7 +14,6 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
@@ -94,6 +93,7 @@ nmap <silent> <C-^> <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ac <Plug>(coc-codeaction-cursor)
 nmap <leader>as <Plug>(coc-codeaction-source)
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
 inoremap <silent><expr> <c-@> coc#refresh()
 inoremap <silent><expr> <c-j> coc#pum#visible() ? coc#pum#next(1) : ''
