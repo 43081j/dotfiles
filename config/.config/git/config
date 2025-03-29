@@ -10,3 +10,5 @@
   diffs = diff --staged
 [pull]
   rebase = true
+[init]
+	defaultBranch = main
