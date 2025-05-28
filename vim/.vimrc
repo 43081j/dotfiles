@@ -8,7 +8,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'tpope/vim-surround'
@@ -71,7 +70,7 @@ nnoremap <c-p> :FzfFiles<CR>
 nnoremap <silent> <leader>a :FzfBuffers<CR>
 nnoremap <silent> <leader>/ :execute 'FzfRg ' . input('Rg/')<CR>
 nnoremap <silent> <leader>gl :FzfCommits<CR>
-nnoremap <silent> <leader>gf :FzfBCommits<CR>
+nnoremap <silent> <leader>gc :FzfBCommits<CR>
 nnoremap <silent> <leader>gf :FzfGFiles<CR>
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 
@@ -106,6 +105,32 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
+
+function! RunAstGrepOnBuffer()
+  let l:input = input('sg/')
+  if l:input == ''
+    echo "No input provided"
+    return
+  endif
+  let l:parts = split(l:input, '/')
+  if len(l:parts) != 2
+    echoerr "Invalid input format. Expected 'searchPattern/replacePattern'"
+    return
+  endif
+  let l:searchPattern = l:parts[0]
+  let l:replacePattern = l:parts[1]
+  let l:command = 'sg run --lang=typescript --heading=never --color=never --stdin -U -p ' . shellescape(l:searchPattern) . ' -r ' . shellescape(l:replacePattern) . ''
+  let l:output = system(l:command, join(getbufline('%', 1, '$'), "\n"))
+  if v:shell_error
+    echoerr "Error running ast-grep: " . l:output
+    return
+  endif
+  let l:output_lines = split(l:output, "\n")[0:-3]
+
+  call setline(1, output_lines)
+endfunction
+
+nnoremap <leader>bsg :call RunAstGrepOnBuffer()<CR>
 
 " Filetypes
 
