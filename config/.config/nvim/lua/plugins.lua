@@ -32,6 +32,18 @@ return {
   },
   {
     "github/copilot.vim"
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+    }
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    opts = {
+    },
   }
 }
 -- Plug 'justinmk/vim-dirvish'

@@ -1,5 +1,7 @@
 require("config.lazy")
+require("lsp_signature").setup()
 local fzf = require("fzf-lua")
+local cmp = require('cmp')
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -31,6 +33,7 @@ vim.keymap.set({'n', 'i', 'v'}, '<Right>', '<nop>')
 vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition)
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
 -- vim.keymap.set('n', '<c-^>', vim.lsp.buf.references)
 -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
 -- vim.keymap.set('n', '<c-n>', 'Vexplore')
@@ -51,4 +54,29 @@ end
 vim.keymap.set('n', '<leader>sg', sg_run_picker, { desc = "ast-grep picker" })
 
 -- language servers
-vim.lsp.enable('tsgo')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.enable('tsgo', { capabilities = capabilities })
+
+cmp.setup({
+  completion = {
+    autocomplete = false,
+  },
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- these don't work for whatever reason
+    -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+  })
+})
