@@ -19,3 +19,6 @@ symbol = "t "
 
 [container]
 disabled = true
+
+[dotnet]
+disabled = true

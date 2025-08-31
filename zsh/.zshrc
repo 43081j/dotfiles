@@ -18,6 +18,12 @@ fi
 if [ -d ~/.cargo ]; then
 	. ~/.cargo/env
 fi
+if [ -d ~/go ]; then
+  path+=(~/go/bin)
+fi
+if [ -d /opt/nvim ]; then
+  path+=(/opt/nvim/bin)
+fi
 
 source ~/.zsh/antigen/antigen.zsh
 antigen init ~/.zsh/antigenrc.zsh
