@@ -53,9 +53,20 @@ end
 
 vim.keymap.set('n', '<leader>sg', sg_run_picker, { desc = "ast-grep picker" })
 
+-- syntax/tree-sitter stuff
+require'nvim-treesitter'.install { 'typescript', 'javascript', 'json', 'svelte', 'html', 'css' }
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'javascript', 'json', 'svelte', 'html', 'css' },
+  callback = function()
+    vim.treesitter.start()
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
 -- language servers
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 vim.lsp.enable('tsgo', { capabilities = capabilities })
+vim.lsp.enable('svelte')
 
 cmp.setup({
   completion = {

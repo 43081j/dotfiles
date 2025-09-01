@@ -44,6 +44,12 @@ return {
     event = "InsertEnter",
     opts = {
     },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = 'main',
+    lazy = false,
+    build = ":TSUpdate"
   }
 }
 -- Plug 'justinmk/vim-dirvish'
