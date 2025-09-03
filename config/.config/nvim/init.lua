@@ -30,7 +30,7 @@ vim.keymap.set({'n', 'i', 'v'}, '<Up>', '<nop>')
 vim.keymap.set({'n', 'i', 'v'}, '<Down>', '<nop>')
 vim.keymap.set({'n', 'i', 'v'}, '<Left>', '<nop>')
 vim.keymap.set({'n', 'i', 'v'}, '<Right>', '<nop>')
-vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
@@ -67,6 +67,7 @@ vim.api.nvim_create_autocmd('FileType', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 vim.lsp.enable('tsgo', { capabilities = capabilities })
 vim.lsp.enable('svelte')
+vim.lsp.enable('eslint')
 
 cmp.setup({
   completion = {
