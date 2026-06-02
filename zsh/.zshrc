@@ -24,6 +24,9 @@ fi
 if [ -d /opt/nvim ]; then
   path+=(/opt/nvim/bin)
 fi
+if [ -d ~/.local/share/mise/shims ]; then
+  path+=(~/.local/share/mise/shims)
+fi
 
 source ~/.zsh/antigen/antigen.zsh
 antigen init ~/.zsh/antigenrc.zsh
