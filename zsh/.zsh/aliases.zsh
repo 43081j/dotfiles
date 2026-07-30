@@ -6,3 +6,4 @@ if (( ${+commands[eza]} )); then
 fi
 
 alias prettier_staged='npx prettier --write $(git diff --name-only --cached --relative --diff-filter d)'
+alias gppo='git pull && git remote prune origin'
